@@ -29,16 +29,19 @@ public class AutomationPracticeFormTest {
         $("#userEmail").setValue("some@email.com");
         $x("//*[contains(text(), 'Female')]").click();
         $("#userNumber").setValue("7123456789");
-        Helpers.setDateById("dateOfBirthInput", "29 Sep 1980");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionContainingText("September");
+        $(".react-datepicker__year-select").selectOptionContainingText("1980");
+        $(".react-datepicker__day--029").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#subjectsInput").setValue("Computer Science").pressEnter();
         $x("//*[contains(text(), 'Music')]").click();
         $("#uploadPicture").uploadFile(picOk);
         $("#currentAddress").setValue("Some Area Some City Street st.1 fl.1");
         $x("//*[contains(text(), 'Select State')]").click();
-        $("#react-select-3-option-1").click();
+        $("#react-select-3-option-0").click();
         $x("//*[contains(text(), 'Select City')]").click();
-        $("#react-select-4-option-1").click();
+        $("#react-select-4-option-0").click();
         $(".btn-primary").click();
 
         //verify filled values

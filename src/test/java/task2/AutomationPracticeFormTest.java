@@ -1,5 +1,6 @@
 package task2;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,17 @@ public class AutomationPracticeFormTest {
         $(".btn-primary").click();
 
         //verify filled values
-
+        $("tr:nth-child(1) > td:nth-child(2)").shouldHave(Condition.text("Somefirstname Somelastname"));
+        $("tr:nth-child(2) > td:nth-child(2)").shouldHave(Condition.text("some@email.com"));
+        $("tr:nth-child(3) > td:nth-child(2)").shouldHave(Condition.text("Female"));
+        $("tr:nth-child(4) > td:nth-child(2)").shouldHave(Condition.text("7123456789"));
+        $("tr:nth-child(5) > td:nth-child(2)").shouldHave(Condition.text("29 September,1980"));
+        $("tr:nth-child(6) > td:nth-child(2)").shouldHave(Condition.text("Maths, Computer Science"));
+        $("tr:nth-child(7) > td:nth-child(2)").shouldHave(Condition.text("Music"));
+        $("tr:nth-child(8) > td:nth-child(2)").shouldHave(Condition.text("interesting-cat-facts.jpg"));
+        $("tr:nth-child(9) > td:nth-child(2)").shouldHave(Condition.text("Some Area Some City Street st.1 fl.1"));
+        $("tr:nth-child(10) > td:nth-child(2)").shouldHave(Condition.text("NCR Delhi"));
+        $("#closeLargeModal").click();
 
 
     }

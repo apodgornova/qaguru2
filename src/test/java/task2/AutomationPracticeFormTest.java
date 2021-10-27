@@ -3,10 +3,12 @@ package task2;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.LocalDate;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AutomationPracticeFormTest {
 
@@ -24,10 +26,8 @@ public class AutomationPracticeFormTest {
         $("#userEmail").setValue("some@email.com");
         $x("//*[contains(text(), 'Female')]").click();
         $("#userNumber").setValue("7123456789");
+        Helpers.setDateById("dateOfBirthInput", "29 Sep 1980");
 
-        //datepicker
-        //$("#dateOfBirthInput").setValue("");
-        //$("#dateOfBirthInput").setValue("29 Sep 1980");
 
 
 

@@ -29,7 +29,6 @@ public class AutomationPracticeFormTest {
     String state = "NCR";
     String city = "Delhi";
 
-
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
@@ -61,7 +60,6 @@ public class AutomationPracticeFormTest {
         $("#react-select-4-option-0").click();
         $(".btn-primary").click();
 
-
         //verify filled values
         $(".modal-body").shouldHave(text("Student name"), text(firstName + " " + lastName),
                 text("Student Email"), text(email),
@@ -74,10 +72,8 @@ public class AutomationPracticeFormTest {
                 text("Address"), text(address),
                 text("State and City"), text(state + " " + city));
 
-
         //close modal form
         $("#closeLargeModal").click();
-
 
     }
 

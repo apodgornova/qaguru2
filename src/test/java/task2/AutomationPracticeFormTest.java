@@ -1,17 +1,34 @@
 package task2;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AutomationPracticeFormTest {
 
     File picOk = new File("src/test/resources/interesting-cat-facts.jpg");
+    String fileName = "interesting-cat-facts.jpg";
+    String URL = "https://demoqa.com/automation-practice-form";
+    String firstName = "Somefirstname";
+    String lastName = "Somelastname";
+    String email = "some@email.com";
+    String gender = "Female";
+    String phone = "7123456789";
+    String month = "September";
+    String year = "1980";
+    String day = "29";
+    String subject1 = "Maths";
+    String subject2 = "Computer Science";
+    String hobby = "Music";
+    String address = "Some Area Some City Street st.1 fl.1";
+    String state = "NCR";
+    String city = "Delhi";
+
 
     @BeforeAll
     static void beforeAll() {
@@ -21,40 +38,44 @@ public class AutomationPracticeFormTest {
     @Test
     void testDemoForm() {
 
-        open("https://demoqa.com/automation-practice-form");
+        open(URL);
 
         //fill fields
-        $("#firstName").setValue("Somefirstname");
-        $("#lastName").setValue("Somelastname");
-        $("#userEmail").setValue("some@email.com");
-        $x("//*[contains(text(), 'Female')]").click();
-        $("#userNumber").setValue("7123456789");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
+        $x("//*[contains(text(), '" + gender + "')]").click();
+        $("#userNumber").setValue(phone);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOptionContainingText("September");
-        $(".react-datepicker__year-select").selectOptionContainingText("1980");
+        $(".react-datepicker__month-select").selectOptionContainingText(month);
+        $(".react-datepicker__year-select").selectOptionContainingText(year);
         $(".react-datepicker__day--029").click();
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $("#subjectsInput").setValue("Computer Science").pressEnter();
-        $x("//*[contains(text(), 'Music')]").click();
+        $("#subjectsInput").setValue(subject1).pressEnter();
+        $("#subjectsInput").setValue(subject2).pressEnter();
+        $x("//*[contains(text(), '" + hobby + "')]").click();
         $("#uploadPicture").uploadFile(picOk);
-        $("#currentAddress").setValue("Some Area Some City Street st.1 fl.1");
+        $("#currentAddress").setValue(address);
         $x("//*[contains(text(), 'Select State')]").click();
         $("#react-select-3-option-0").click();
         $x("//*[contains(text(), 'Select City')]").click();
         $("#react-select-4-option-0").click();
         $(".btn-primary").click();
 
+
         //verify filled values
-        $("tr:nth-child(1) > td:nth-child(2)").shouldHave(Condition.text("Somefirstname Somelastname"));
-        $("tr:nth-child(2) > td:nth-child(2)").shouldHave(Condition.text("some@email.com"));
-        $("tr:nth-child(3) > td:nth-child(2)").shouldHave(Condition.text("Female"));
-        $("tr:nth-child(4) > td:nth-child(2)").shouldHave(Condition.text("7123456789"));
-        $("tr:nth-child(5) > td:nth-child(2)").shouldHave(Condition.text("29 September,1980"));
-        $("tr:nth-child(6) > td:nth-child(2)").shouldHave(Condition.text("Maths, Computer Science"));
-        $("tr:nth-child(7) > td:nth-child(2)").shouldHave(Condition.text("Music"));
-        $("tr:nth-child(8) > td:nth-child(2)").shouldHave(Condition.text("interesting-cat-facts.jpg"));
-        $("tr:nth-child(9) > td:nth-child(2)").shouldHave(Condition.text("Some Area Some City Street st.1 fl.1"));
-        $("tr:nth-child(10) > td:nth-child(2)").shouldHave(Condition.text("NCR Delhi"));
+        $(".modal-body").shouldHave(text("Student name"), text(firstName + " " + lastName),
+                text("Student Email"), text(email),
+                text("Gender"), text(gender),
+                text("Mobile"), text(phone),
+                text("Date of Birth"), text(day + " " + month + "," + year),
+                text("Subjects"), text(subject1 + ", " + subject2),
+                text("Hobbies"), text(hobby),
+                text("Picture"), text(fileName),
+                text("Address"), text(address),
+                text("State and City"), text(state + " " + city));
+
+
+        //close modal form
         $("#closeLargeModal").click();
 
 

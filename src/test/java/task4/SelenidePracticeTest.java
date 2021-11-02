@@ -1,4 +1,41 @@
 package task4;
 
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.CollectionCondition.itemWithText;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selenide.*;
+
 public class SelenidePracticeTest {
+
+    String URL = "https://github.com/selenide/selenide";
+
+    @Test
+    void testGithubSearch() {
+
+        /*
+        - Откройте страницу Selenide в Github
+        - Перейдите в раздел Wiki проекта
+        - Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
+        - Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
+         */
+
+        open(URL);
+        $("[data-content=Wiki]").click();
+        $$(".internal").shouldHave(itemWithText("Soft assertions"));
+        $$(".internal").findBy(text("Soft assertions")).click();
+        $(withText("Using JUnit5 extend test class")).parent().sibling(0).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}"));
+
+    }
 }

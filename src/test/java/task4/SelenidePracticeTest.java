@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class SelenidePracticeTest {
 
     String URL = "https://github.com/selenide/selenide";
+    String URL_2 = "https://the-internet.herokuapp.com/drag_and_drop";
 
     @Test
     void testGithubSearch() {
@@ -25,6 +26,7 @@ public class SelenidePracticeTest {
         $("[data-content=Wiki]").click();
         $$(".internal").shouldHave(itemWithText("Soft assertions"));
         $$(".internal").findBy(text("Soft assertions")).click();
+        $(withText("JUnit5 extension")).shouldHave(text("com.codeborne.selenide.junit5.SoftAssertsExtension"));
         $(withText("Using JUnit5 extend test class")).parent().sibling(0).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
                 "class Tests {\n" +
                 "  @Test\n" +
@@ -36,6 +38,29 @@ public class SelenidePracticeTest {
                 "    $(\"#second\").should(visible).click();\n" +
                 "  }\n" +
                 "}"));
+
+    }
+
+    @Test
+    void testDragNDrop() {
+
+        /*
+         - Откройте https://the-internet.herokuapp.com/drag_and_drop
+        - Перенесите прямоугольник А на место В
+        - Проверьте, что прямоугольники действительно поменялись
+         */
+
+        open(URL_2);
+        $("#column-a header").shouldHave(text("A"));
+        $("#column-b header").shouldHave(text("B"));
+        //$("#column-a").dragAndDropTo("#column-b");
+        actions().moveToElement($("#column-a")).clickAndHold().moveByOffset(900, 300).release().perform();
+        $("#column-a header").shouldHave(text("B"));
+        $("#column-b header").shouldHave(text("A"));
+
+
+        sleep(10000);
+
 
     }
 }

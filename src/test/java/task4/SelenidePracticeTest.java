@@ -53,14 +53,9 @@ public class SelenidePracticeTest {
         open(URL_2);
         $("#column-a header").shouldHave(text("A"));
         $("#column-b header").shouldHave(text("B"));
-        //$("#column-a").dragAndDropTo("#column-b");
-        actions().moveToElement($("#column-a")).clickAndHold().moveByOffset(900, 300).release().perform();
+        $("#column-a").dragAndDropTo("#column-b"); //definitely works now
         $("#column-a header").shouldHave(text("B"));
         $("#column-b header").shouldHave(text("A"));
-
-
-        sleep(10000);
-
 
     }
 }

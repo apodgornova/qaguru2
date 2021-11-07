@@ -28,15 +28,15 @@ public class AutomationPracticeFormTestPageObjectsAndRandom extends TestBase {
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .typeEmail(email)
-                .chooseGender(gender)
+                .chooseGender(GENDER)
                 .typePhone(phone);
 
-        registrationsPage.calendar.setDate(day, month, year);
+        registrationsPage.calendar.setDate(DAY, MONTH, YEAR);
 
-        registrationsPage.setSubject(subject1)
-                .setSubject(subject2)
-                .setHobby(hobby)
-                .addPhotoFile(picOk)
+        registrationsPage.setSubject(SUBJECT_1)
+                .setSubject(SUBJECT_2)
+                .setHobby(HOBBY)
+                .addPhotoFile(PIC_OK)
                 .typeAddress(address)
                 .setFirstState()
                 .setFirstCity()
@@ -44,14 +44,14 @@ public class AutomationPracticeFormTestPageObjectsAndRandom extends TestBase {
 
         registrationsPage.checkResultsValue("Student name", firstName + " " + lastName)
                 .checkResultsValue("Student Email", email)
-                .checkResultsValue("Gender", gender)
+                .checkResultsValue("Gender", GENDER)
                 .checkResultsValue("Mobile", phone)
-                .checkResultsValue("Date of Birth", day + " " + month + "," + year)
-                .checkResultsValue("Subjects", subject1 + ", " + subject2)
-                .checkResultsValue("Hobbies", hobby)
-                .checkResultsValue("Picture", fileName)
+                .checkResultsValue("Date of Birth", DAY + " " + MONTH + "," + YEAR)
+                .checkResultsValue("Subjects", SUBJECT_1 + ", " + SUBJECT_2)
+                .checkResultsValue("Hobbies", HOBBY)
+                .checkResultsValue("Picture", FILE_NAME)
                 .checkResultsValue("Address", address)
-                .checkResultsValue("State and City", state + " " + city);
+                .checkResultsValue("State and City", STATE + " " + CITY);
 
         registrationsPage.closeModal();
 

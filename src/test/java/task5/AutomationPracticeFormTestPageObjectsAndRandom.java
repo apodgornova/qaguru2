@@ -31,7 +31,7 @@ public class AutomationPracticeFormTestPageObjectsAndRandom extends TestBase {
                 .chooseGender(gender)
                 .typePhone(phone);
 
-        registrationsPage.calendar.setDate("29", "September", "1980");
+        registrationsPage.calendar.setDate(day, month, year);
 
         registrationsPage.setSubject(subject1)
                 .setSubject(subject2)

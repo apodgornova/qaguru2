@@ -57,5 +57,4 @@ public class AutomationPracticeFormTestPageObjectsAndRandom extends TestBase {
 
     }
 
-
 }

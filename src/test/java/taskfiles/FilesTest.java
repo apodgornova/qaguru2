@@ -22,14 +22,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilesTest {
 
+    private String ZIP_FILE = "sample-zip-file.zip";
+    private String TXT_FILE = "myfile.txt";
+    private String CSV_FILE = "csv.csv";
+    private String XLS_URL = "https://texkom.ru/optovikam/optovye-prays-listy/";
+    private String UPLOAD_URL = "http://www.csm-testcenter.org/test?do=show&subdo=common&test=file_upload";
+    private String PDF_URL = "https://docs.pexip.com/admin/download_pdf.htm";
+    private String TXT_URL = "https://filesamples.com/formats/txt";
+
     @Test
     @DisplayName("Загрузка файла по относительному пути")
     void filenameShouldDisplayedAfterUploadActionFromClasspathTest() {
 
-        open("http://www.csm-testcenter.org/test?do=show&subdo=common&test=file_upload");
-        $("input[type='file']").uploadFromClasspath("myfile.txt");
+        open(UPLOAD_URL);
+        $("input[type='file']").uploadFromClasspath(TXT_FILE);
         $("#button").click();
-        $("#item").$$("tr").get(0).$$("td").get(1).shouldHave(text("myfile.txt"));
+        $("#item").$$("tr").get(0).$$("td").get(1).shouldHave(text(TXT_FILE));
 
     }
 
@@ -37,7 +45,7 @@ public class FilesTest {
     @DisplayName("Скачивание текстового файла и проверка его содержимого")
     void downloadSimpleTextFileTest() throws IOException {
 
-        open("https://filesamples.com/formats/txt");
+        open(TXT_URL);
         File download = $("#output").$$(".btn-primary").get(0).download();
         String fileContent = IOUtils.toString(new FileReader(download));
         assertTrue(fileContent.contains("Lorem ipsum dolor sit amet, consectetur adipiscing elit."));
@@ -47,7 +55,7 @@ public class FilesTest {
     @DisplayName("Скачивание PDF файла")
     void pdfFileDownloadTest() throws IOException {
 
-        open("https://docs.pexip.com/admin/download_pdf.htm");
+        open(PDF_URL);
         File pdf = $(byText("Pexip Infinity v")).download();
         PDF parsedPdf = new PDF(pdf);
         assertEquals(16, parsedPdf.numberOfPages);
@@ -59,7 +67,7 @@ public class FilesTest {
     @DisplayName("Скачивание XLS файла")
     void xlsFileDownloadTest() throws IOException {
 
-        open("https://texkom.ru/optovikam/optovye-prays-listy/");
+        open(XLS_URL);
         File file = $("a[href*='acsess_m.xls']")
                 .download();
 
@@ -78,7 +86,7 @@ public class FilesTest {
     @DisplayName("Парсинг CSV файлов")
     void parseCsvFileTest() throws IOException, CsvException {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        try (InputStream is = classLoader.getResourceAsStream("csv.csv");
+        try (InputStream is = classLoader.getResourceAsStream(CSV_FILE);
              Reader reader = new InputStreamReader(is)) {
             CSVReader csvReader = new CSVReader(reader);
 
@@ -90,9 +98,9 @@ public class FilesTest {
 
     @Test
     @DisplayName("Парсинг ZIP файлов")
-    void parseZipFileTest() throws IOException{
+    void parseZipFileTest() throws IOException {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        try (InputStream is = classLoader.getResourceAsStream("sample-zip-file.zip");
+        try (InputStream is = classLoader.getResourceAsStream(ZIP_FILE);
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {

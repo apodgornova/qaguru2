@@ -1,6 +1,7 @@
 package taskfiles;
 
 import com.codeborne.pdftest.PDF;
+import com.codeborne.xlstest.XLS;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +13,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilesTest {
@@ -49,26 +49,26 @@ public class FilesTest {
         Assertions.assertEquals(16, parsedPdf.numberOfPages);
     }
 
-    /*@Test
+    @Test
     @DisplayName("Скачивание XLS файла")
     void xlsFileDownloadTest() throws IOException {
-        open("http://romashka2008.ru/price");
-        File file = $$("a[href*='prajs']")
-                .find(text("Скачать Прайс-лист Excel"))
+
+        open("https://texkom.ru/optovikam/optovye-prays-listy/");
+        File file = $("a[href*='acsess_m.xls']")
                 .download();
 
         XLS parsedXls = new XLS(file);
         boolean checkPassed = parsedXls.excel
                 .getSheetAt(0)
-                .getRow(11)
-                .getCell(1)
+                .getRow(17)
+                .getCell(2)
                 .getStringCellValue()
-                .contains("693010, Сахалинская обл, Южно-Сахалинск г, им Анкудинова Федора Степановича б-р, дом № 15, корпус А");
+                .contains("Алкотестер AT400 портативный (0,00-2,00 промилле) ЖК-дисплей с подсветкой, сменные мундштуки, звуковой сигнализатор ДЕЛЬТА");
 
         assertTrue(checkPassed);
     }
 
-    @Test
+    /*@Test
     @DisplayName("Парсинг CSV файлов")
     void parseCsvFileTest() throws IOException, CsvException {
         ClassLoader classLoader = this.getClass().getClassLoader();

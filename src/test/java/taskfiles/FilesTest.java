@@ -1,6 +1,8 @@
 package taskfiles;
 
+import com.codeborne.pdftest.PDF;
 import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,16 +39,17 @@ public class FilesTest {
         assertTrue(fileContent.contains("Lorem ipsum dolor sit amet, consectetur adipiscing elit."));
     }
 
-    /*@Test
+    @Test
     @DisplayName("Скачивание PDF файла")
     void pdfFileDownloadTest() throws IOException {
-        open("https://junit.org/junit5/docs/current/user-guide/");
-        File pdf = $(byText("PDF download")).download();
+
+        open("https://docs.pexip.com/admin/download_pdf.htm");
+        File pdf = $(byText("Pexip Infinity v")).download();
         PDF parsedPdf = new PDF(pdf);
-        Assertions.assertEquals(164, parsedPdf.numberOfPages);
+        Assertions.assertEquals(16, parsedPdf.numberOfPages);
     }
 
-    @Test
+    /*@Test
     @DisplayName("Скачивание XLS файла")
     void xlsFileDownloadTest() throws IOException {
         open("http://romashka2008.ru/price");

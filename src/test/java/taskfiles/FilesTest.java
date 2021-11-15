@@ -51,6 +51,8 @@ public class FilesTest {
         File pdf = $(byText("Pexip Infinity v")).download();
         PDF parsedPdf = new PDF(pdf);
         assertEquals(16, parsedPdf.numberOfPages);
+        assertTrue(parsedPdf.text.contains("Release Notes"));
+
     }
 
     @Test
@@ -88,7 +90,7 @@ public class FilesTest {
 
     @Test
     @DisplayName("Парсинг ZIP файлов")
-    void parseZipFileTest() throws IOException, CsvException {
+    void parseZipFileTest() throws IOException{
         ClassLoader classLoader = this.getClass().getClassLoader();
         try (InputStream is = classLoader.getResourceAsStream("sample-zip-file.zip");
              ZipInputStream zis = new ZipInputStream(is)) {

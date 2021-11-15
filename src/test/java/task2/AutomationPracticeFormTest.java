@@ -31,7 +31,7 @@ public class AutomationPracticeFormTest {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.startMaximized = true;
+        Configuration.browserSize = "1920x1080";
     }
 
     @Test

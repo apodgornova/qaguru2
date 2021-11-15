@@ -2,18 +2,22 @@ package taskfiles;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilesTest {
@@ -46,7 +50,7 @@ public class FilesTest {
         open("https://docs.pexip.com/admin/download_pdf.htm");
         File pdf = $(byText("Pexip Infinity v")).download();
         PDF parsedPdf = new PDF(pdf);
-        Assertions.assertEquals(16, parsedPdf.numberOfPages);
+        assertEquals(16, parsedPdf.numberOfPages);
     }
 
     @Test
@@ -68,7 +72,7 @@ public class FilesTest {
         assertTrue(checkPassed);
     }
 
-    /*@Test
+    @Test
     @DisplayName("Парсинг CSV файлов")
     void parseCsvFileTest() throws IOException, CsvException {
         ClassLoader classLoader = this.getClass().getClassLoader();
@@ -77,7 +81,8 @@ public class FilesTest {
             CSVReader csvReader = new CSVReader(reader);
 
             List<String[]> strings = csvReader.readAll();
-            assertEquals(3, strings.size());
+            assertEquals(4, strings.size());
+
         }
     }
 
@@ -85,13 +90,13 @@ public class FilesTest {
     @DisplayName("Парсинг ZIP файлов")
     void parseZipFileTest() throws IOException, CsvException {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        try (InputStream is = classLoader.getResourceAsStream("zip_2MB.zip");
+        try (InputStream is = classLoader.getResourceAsStream("sample-zip-file.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 System.out.println(entry.getName());
             }
         }
-    }*/
+    }
 
 }

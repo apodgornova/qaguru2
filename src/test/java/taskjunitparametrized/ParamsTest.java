@@ -17,14 +17,6 @@ public class ParamsTest extends TestBase {
     Помимо самих тестов, оформить тесткейсы к ним в текстовых файлах.
     В идеале опробовать максимальное количество разных вариантов Argument-провайдеров (разные аннотации)*/
 
-    //2.MethodSource
-    static Stream<Arguments> stringProvider() {
-        return Stream.of(
-                Arguments.of("Maven", "maven"),
-                Arguments.of("Gradle", "gradle")
-        );
-    }
-
     //1.ValueSource
     @ValueSource(strings = {"Maven", "Gradle"})
     @Tag("blocker")
@@ -38,6 +30,14 @@ public class ParamsTest extends TestBase {
                 find(text(argument))
                 .shouldBe(visible);
 
+    }
+
+    //2.MethodSource
+    static Stream<Arguments> stringProvider() {
+        return Stream.of(
+                Arguments.of("Maven", "maven"),
+                Arguments.of("Gradle", "gradle")
+        );
     }
 
     @MethodSource("stringProvider")

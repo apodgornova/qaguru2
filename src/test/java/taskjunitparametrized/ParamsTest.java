@@ -56,6 +56,7 @@ public class ParamsTest extends TestBase {
 
     //3.EnumSource
     @EnumSource(SearchQuery.class)
+    @Tag("blocker")
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {0}")
     void commonGithubSearchTestEnum(SearchQuery query) {
 
@@ -70,6 +71,7 @@ public class ParamsTest extends TestBase {
 
     //4.CsvSource
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {1}")
+    @Tag("blocker")
     @CsvSource(value = {
             "Maven| maven",
             "Gradle| gradle"

@@ -73,10 +73,11 @@ public class ParamsTest extends TestBase{
 
     //4.CsvSource
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {1}")
-    @CsvSource({
-            "Maven, maven",
-            "Gradle, gradle"
-    })
+    @CsvSource(value = {
+            "Maven| maven",
+            "Gradle| gradle"
+    },
+    delimiter = '|')
     void commonGithubCsvSourceSearchTest(String search, String result) {
 
         open("https://github.com/");

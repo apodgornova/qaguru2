@@ -60,6 +60,20 @@ public class ParamsTest extends TestBase{
 
     }
 
+    //3.EnumSource
+    @EnumSource(SearchQuery.class)
+    @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {0}")
+    void commonGithubSearchTestEnum(SearchQuery query) {
+
+        open("https://github.com/");
+        $(".header-search-input").setValue(query.name());
+        $(".header-search-input").pressEnter();
+        $$(".v-align-middle").
+                find(text(query.name()))
+                .shouldBe(visible);
+
+    }
+
 
 
     /*private static List<String> arguments = List.of("лаконичные и стабильные UI тесты на Java");

@@ -4,10 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -73,6 +70,24 @@ public class ParamsTest extends TestBase{
                 .shouldBe(visible);
 
     }
+
+    //4.CsvSource
+    @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {1}")
+    @CsvSource({
+            "Maven, maven",
+            "Gradle, gradle"
+    })
+    void commonGithubCsvSourceSearchTest(String search, String result) {
+
+        open("https://github.com/");
+        $(".header-search-input").setValue(search);
+        $(".header-search-input").pressEnter();
+        $$(".v-align-middle").
+                find(text(result))
+                .shouldBe(visible);
+
+    }
+
 
 
 

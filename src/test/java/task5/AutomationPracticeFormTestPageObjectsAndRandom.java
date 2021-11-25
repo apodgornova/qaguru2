@@ -3,6 +3,7 @@ package task5;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -21,6 +22,7 @@ public class AutomationPracticeFormTestPageObjectsAndRandom extends TestBase {
     String phone = "7" + fakeValuesService.regexify("[0-9]{9}");
     String address = faker.address().streetAddress();
 
+    @Disabled
     @Test
     void testDemoForm() {
 

@@ -1,5 +1,6 @@
 package task4;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.itemWithText;
@@ -12,6 +13,7 @@ public class SelenidePracticeTest {
     String URL = "https://github.com/selenide/selenide";
     String URL_2 = "https://the-internet.herokuapp.com/drag_and_drop";
 
+    @Disabled
     @Test
     void testGithubSearch() {
 
@@ -41,6 +43,7 @@ public class SelenidePracticeTest {
 
     }
 
+    @Disabled
     @Test
     void testDragNDrop() {
 

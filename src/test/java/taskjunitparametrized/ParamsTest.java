@@ -1,5 +1,6 @@
 package taskjunitparametrized;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -18,6 +19,7 @@ public class ParamsTest extends TestBase {
     В идеале опробовать максимальное количество разных вариантов Argument-провайдеров (разные аннотации)*/
 
     //1.ValueSource
+    @Disabled
     @ValueSource(strings = {"Maven", "Gradle"})
     @Tag("blocker")
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {0}")
@@ -40,6 +42,7 @@ public class ParamsTest extends TestBase {
         );
     }
 
+    @Disabled
     @MethodSource("stringProvider")
     @Tag("blocker")
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {1}")
@@ -55,6 +58,7 @@ public class ParamsTest extends TestBase {
     }
 
     //3.EnumSource
+    @Disabled
     @EnumSource(SearchQuery.class)
     @Tag("blocker")
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {0}")
@@ -70,6 +74,7 @@ public class ParamsTest extends TestBase {
     }
 
     //4.CsvSource
+    @Disabled
     @ParameterizedTest(name = "Поиск слова {0} и проверка отображения текста {1}")
     @Tag("blocker")
     @CsvSource(value = {

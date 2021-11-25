@@ -5,6 +5,7 @@ import com.codeborne.xlstest.XLS;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,7 @@ public class FilesTest {
     private String PDF_URL = "https://docs.pexip.com/admin/download_pdf.htm";
     private String TXT_URL = "https://filesamples.com/formats/txt";
 
+    @Disabled
     @Test
     @DisplayName("Загрузка файла по относительному пути")
     void filenameShouldDisplayedAfterUploadActionFromClasspathTest() {
@@ -41,6 +43,7 @@ public class FilesTest {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Скачивание текстового файла и проверка его содержимого")
     void downloadSimpleTextFileTest() throws IOException {
@@ -51,6 +54,7 @@ public class FilesTest {
         assertTrue(fileContent.contains("Lorem ipsum dolor sit amet, consectetur adipiscing elit."));
     }
 
+    @Disabled
     @Test
     @DisplayName("Скачивание PDF файла")
     void pdfFileDownloadTest() throws IOException {
@@ -63,6 +67,7 @@ public class FilesTest {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Скачивание XLS файла")
     void xlsFileDownloadTest() throws IOException {
@@ -82,6 +87,7 @@ public class FilesTest {
         assertTrue(checkPassed);
     }
 
+    @Disabled
     @Test
     @DisplayName("Парсинг CSV файлов")
     void parseCsvFileTest() throws IOException, CsvException {
@@ -96,6 +102,7 @@ public class FilesTest {
         }
     }
 
+    @Disabled
     @Test
     @DisplayName("Парсинг ZIP файлов")
     void parseZipFileTest() throws IOException {

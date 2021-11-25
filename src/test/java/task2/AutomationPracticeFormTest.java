@@ -9,7 +9,7 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AutomationPracticeFormTest {
+public class AutomationPracticeFormTest extends pages.TestBase{
 
     File picOk = new File("src/test/resources/interesting-cat-facts.jpg");
     String fileName = "interesting-cat-facts.jpg";
@@ -28,11 +28,6 @@ public class AutomationPracticeFormTest {
     String address = "Some Area Some City Street st.1 fl.1";
     String state = "NCR";
     String city = "Delhi";
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-    }
 
     @Test
     void testDemoForm() {

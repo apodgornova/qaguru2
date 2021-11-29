@@ -24,7 +24,7 @@ public class TestBase {
             Configuration.startMaximized = true;
             //https://user1:1234@selenoid.autotests.cloud/wd/hub/
 
-            String selenoidUrl = System.getProperty("url", "selenoid.autotests.cloud/wd/hub/");
+            String selenoidUrl = System.getProperty("selenoidUrl", "selenoid.autotests.cloud/wd/hub/");
             Configuration.remote = format("https://%s:%s@%s",
                 credentialsConfig.login(),
                 credentialsConfig.password(),

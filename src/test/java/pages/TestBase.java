@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static java.lang.String.format;
+
 public class TestBase {
 
     public static CredentialsConfig credentialsConfig =
@@ -22,7 +24,7 @@ public class TestBase {
             SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
             Configuration.startMaximized = true;
             //https://user1:1234@selenoid.autotests.cloud/wd/hub/
-            Configuration.remote = "https://" + credentialsConfig.login() + ":" + credentialsConfig.password() + "@selenoid.autotests.cloud/wd/hub/";
+            Configuration.remote = format("https://%s:%s@%s", credentialsConfig.login(), credentialsConfig.password(), System.getProperty("URL"));
             Configuration.browserSize = "1920x1080";
 
             DesiredCapabilities capabilities = new DesiredCapabilities();

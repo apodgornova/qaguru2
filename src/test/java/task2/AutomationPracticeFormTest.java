@@ -2,6 +2,7 @@ package task2;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -29,6 +30,7 @@ public class AutomationPracticeFormTest extends pages.TestBase{
     String state = "NCR";
     String city = "Delhi";
 
+    @Tag("properties")
     @Test
     void testDemoForm() {
 

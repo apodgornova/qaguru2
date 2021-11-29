@@ -23,7 +23,7 @@ public class TestBase {
             SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
             Configuration.startMaximized = true;
             //https://user1:1234@selenoid.autotests.cloud/wd/hub/
-            Configuration.remote = "https://" + credentialsConfig.login() + ":" + credentialsConfig.password() + "@" + System.getProperty("url");
+            Configuration.remote = "https://" + credentialsConfig.login() + ":" + credentialsConfig.password() + "@" + System.getProperty("URL");
             Configuration.browserSize = "1920x1080";
 
             DesiredCapabilities capabilities = new DesiredCapabilities();

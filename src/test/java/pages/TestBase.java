@@ -2,19 +2,27 @@ package pages;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.CredentialsConfig;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
 
-        @BeforeAll
+    public static CredentialsConfig credentialsConfig =
+            ConfigFactory.create(CredentialsConfig.class);
+
+    @Tag("properties")
+    @BeforeAll
         static void setup() {
             SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
             Configuration.startMaximized = true;
-            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+            //https://user1:1234@selenoid.autotests.cloud/wd/hub/
+            Configuration.remote = "https://" + credentialsConfig.login() + ":" + credentialsConfig.password() + "@selenoid.autotests.cloud/wd/hub/";
             Configuration.browserSize = "1920x1080";
 
             DesiredCapabilities capabilities = new DesiredCapabilities();

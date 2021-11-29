@@ -33,6 +33,7 @@ public class AutomationPracticeFormTest extends pages.TestBase{
     void testDemoForm() {
 
         open(URL);
+        System.out.println("URL is" + URL);
 
         //fill fields
         $("#firstName").setValue(firstName);
